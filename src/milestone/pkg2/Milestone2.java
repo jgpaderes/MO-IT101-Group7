@@ -6,7 +6,10 @@ package milestone.pkg2;
 
 /**
  *
- * @author Gab Paderes
+ * @authors 
+ * Paderes, Juan Gabriel --- jgpaderes
+ * 
+ * 
  */
 import java.io.BufferedReader;
 import java.io.FileReader;
