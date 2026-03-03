@@ -80,6 +80,10 @@ public class Milestone2 {
             boolean checker = false;
             double firstHalf = 0;
             double secondHalf = 0; 
+            double firstGrossSalary;
+            double secondGrossSalary;
+            double grossSalary;
+            double totalDeductions;
             int monthCount = 6;
             Scanner input = new Scanner(System.in);
 
@@ -106,39 +110,42 @@ public class Milestone2 {
                         
                         if (monthCount <= 12){
                             
-                            if (monthCount != monthNo){  
-                                
-                                System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
-                                System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondHalf * Double.valueOf(getRate(employeeNumber)) + "\n" + "Each Decuction: \n" + "\tSSS: \n" + "\tPag-IBIG \n" +"\tTax: \n"+ "Total Deductions: \n" + "Net Salary: \n");
+                            if (monthCount != monthNo){ 
+                                firstGrossSalary = firstHalf * Double.valueOf(getRate(employeeNumber));
+                                secondGrossSalary = secondHalf * Double.valueOf(getRate(employeeNumber));
+                                grossSalary = firstGrossSalary + secondGrossSalary;
+                                totalDeductions = (getSSS(grossSalary) + getPhilHealth(grossSalary) + getPagIbig(grossSalary) + getWithholdingTax(grossSalary));
+                                System.out.println("**************************************\n");
+                                System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstGrossSalary + "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
+                                System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondGrossSalary + "\n" + "Each Decuction: \n" + "\tSSS: " + getSSS(grossSalary) + "\tPhilHealth: " + getPhilHealth(grossSalary) + "\n" + "\tPag-IBIG: "+ getPagIbig(grossSalary) + "\n" + "\tTax: " + getWithholdingTax(grossSalary) + "Total Deductions: " + totalDeductions + "\n" + "Net Salary: " + (grossSalary - totalDeductions) + "\n");
                                 System.out.println("**************************************"); 
-                                System.out.println(getRate(employeeNumber));
+                                
                                 // Prints payroll summary at the end of each month
                                 monthCount++;
+                                
                                 firstHalf = 0;
                                 secondHalf = 0;
                                 // Resets the total every start of the new month
                                 
                                 
-                                }   
-                                if(date <=15){
+                            }   
+                            if(date <=15){
                                     firstHalf += hours;
                                     
 
-                                }else{
+                            }else{
                                     secondHalf += hours;
-                                }
-                                if (column.isEmpty()){
-                                        System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
-                                        System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondHalf * Double.valueOf(getRate(employeeNumber)) + "\n" + "Each Decuction: \n" + "\tSSS: \n" + "\tPag-IBIG \n" +"\tTax: \n"+ "Total Deductions: \n" + "Net Salary: \n");
-                                        System.out.println("**************************************");       
-                                }
-
+                            }
                         }
                     }                  
                 }
-                
-                System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
-                System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondHalf * Double.valueOf(getRate(employeeNumber)) + "\n" + "Each Decuction: \n" + "\tSSS: \n" + "\tPag-IBIG \n" +"\tTax: \n"+ "Total Deductions: \n" + "Net Salary: \n");
+                firstGrossSalary = firstHalf * Double.valueOf(getRate(employeeNumber));
+                secondGrossSalary = secondHalf * Double.valueOf(getRate(employeeNumber));
+                grossSalary = firstGrossSalary + secondGrossSalary;
+                totalDeductions = (getSSS(grossSalary) + getPhilHealth(grossSalary) + getPagIbig(grossSalary) + getWithholdingTax(grossSalary));
+                System.out.println("**************************************\n");
+                System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstGrossSalary + "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
+                System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondGrossSalary + "\n" + "Each Decuction: \n" + "\tSSS: " + getSSS(grossSalary) + "\n" + "\tPhilHealth: " + getPhilHealth(grossSalary) + "\n" + "\tPag-IBIG: "+ getPagIbig(grossSalary) + "\n" +"\tTax: "+ getWithholdingTax(grossSalary) + "\n" + "Total Deductions: " + totalDeductions +"\n" + "Net Salary: " + (grossSalary - totalDeductions) + "\n");
                 System.out.println("**************************************");
                 // placed outside the while loop to catch December as the loop stops after reading the last item in the CSV
                 
@@ -233,7 +240,7 @@ public class Milestone2 {
                             employeeInfo[i] = data;   
                             i++;
                             if (i == 4){
-                                System.out.println("**************************************\n"); 
+                                 
                                 System.out.println("Employee Number: " + employeeInfo[0] +"\n" + "Employee Name: " + employeeInfo[1] + ", " + employeeInfo[2] + "\n" + "Birthday: " + employeeInfo[3] + "\n");
                                 break;
                             }                
@@ -246,7 +253,7 @@ public class Milestone2 {
             }
         return "";
     }
-        public static void calculateAllSalary(){
+    public static void calculateAllSalary(){
         String filePath = "src/Resources/AttendanceData.csv";
             String column;
             String delimiter = ",";
@@ -260,21 +267,23 @@ public class Milestone2 {
             do{
                 double firstHalf = 0;
                 double secondHalf = 0;
+                double firstGrossSalary;
+                double secondGrossSalary;
+                double grossSalary;
+                double totalDeductions;
                 int monthCount = 6;
                 try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 
                     br.readLine();
                 // Added to skip the header values
-                //if (empCheck)
-                
-                    
+
                     while ((column = br.readLine()) != null) {
                         String[] values = column.split(delimiter);
                    
                     
-                        String empTemp = values[0];
-                        employeeNumber = empTemp;
-                        if (empCheck == (Integer.valueOf(empTemp))){
+                        employeeNumber = values[0];
+                        
+                        if (empCheck == (Integer.valueOf(employeeNumber))){
 
                             String[] dateSplit = values[3].split("/");
                             int monthNo = Integer.parseInt(dateSplit[0]);
@@ -287,9 +296,12 @@ public class Milestone2 {
                             if (monthCount <= 12){
                             
                                 if (monthCount != monthNo){  
-                                
-                                    System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
-                                    System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondHalf * Double.valueOf(getRate(employeeNumber)) + "\n" + "Each Decuction: \n" + "\tSSS: \n" + "\tPag-IBIG: \n" +"\tTax: \n"+ "Total Deductions: \n" + "Net Salary: \n");
+                                    firstGrossSalary = firstHalf * Double.valueOf(getRate(employeeNumber));
+                                    secondGrossSalary = secondHalf * Double.valueOf(getRate(employeeNumber));
+                                    grossSalary = firstGrossSalary + secondGrossSalary;
+                                    totalDeductions = (getSSS(grossSalary) + getPhilHealth(grossSalary) + getPagIbig(grossSalary) + getWithholdingTax(grossSalary));
+                                    System.out.println(readEmployeeData(employeeNumber) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstGrossSalary + "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(employeeNumber))+ "\n");
+                                    System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondGrossSalary + "\n" + "Each Decuction: \n" + "\tSSS: " + getSSS(grossSalary) + "\n" + "\tPhilHealth: " + getPhilHealth(grossSalary) + "\n" + "\tPag-IBIG: "+ getPagIbig(grossSalary)+ "\n" +"\tTax: "+ getWithholdingTax(grossSalary) +"\n"+ "Total Deductions: " + totalDeductions +"\n" + "Net Salary: " + (grossSalary - totalDeductions) + "\n");
                                     System.out.println("**************************************"); 
                                 
                                     // Prints payroll summary at the end of each month
@@ -306,15 +318,19 @@ public class Milestone2 {
 
                                 }else{
                                     secondHalf += hours;
-
+                                    
                                 }
                             }    
                         }
-                    lastId = values[0];                 
+                    lastId = values[0];      
+                    // Gets the last Employee number from the list
                 }
-                
-                System.out.println(readEmployeeData(String.valueOf(empCheck)) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstHalf * Double.valueOf(getRate(String.valueOf(empCheck)))+ "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(String.valueOf(empCheck)))+ "\n");
-                System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondHalf * Double.valueOf(getRate(String.valueOf(empCheck))) + "\n" + "Each Decuction: \n" + "\tSSS: \n" + "\tPag-IBIG \n" +"\tTax: \n"+ "Total Deductions: \n" + "Net Salary: \n");
+                firstGrossSalary = firstHalf * Double.valueOf(getRate(employeeNumber));
+                secondGrossSalary = secondHalf * Double.valueOf(getRate(employeeNumber));
+                grossSalary = firstGrossSalary + secondGrossSalary;
+                totalDeductions = (getSSS(grossSalary) + getPhilHealth(grossSalary) + getPagIbig(grossSalary) + getWithholdingTax(grossSalary));
+                System.out.println(readEmployeeData(String.valueOf(empCheck)) + "Cutoff Date: " + Month.of(monthCount) + " 1 to " + Month.of(monthCount)+" 15\n" + "Total Hours Worked: " + firstHalf + "\n" + "Gross Salary: " + firstGrossSalary + "\n" + "Net Salary: "+ firstHalf * Double.valueOf(getRate(String.valueOf(empCheck)))+ "\n");
+                System.out.println("Cutoff Date: " + Month.of(monthCount) + " 16 to " + Month.of(monthCount)+" "+ YearMonth.of(2024, monthCount).lengthOfMonth() +"\n" + "Total Hours Worked: " + secondHalf + "\n" + "Gross Salary: " +  secondGrossSalary + "\n" + "Each Decuction: \n" + "\tSSS: " + getSSS(grossSalary) + "\n" + "\tPhilHealth: " + getPhilHealth(grossSalary) + "\n" + "\tPag-IBIG: "+ getPagIbig(grossSalary) + "\n" +"\tTax: "+ getWithholdingTax(grossSalary) +"\n" + "Total Deductions: " + totalDeductions +"\n" + "Net Salary: " + (grossSalary - totalDeductions) + "\n");
                 System.out.println("**************************************");
                 empCheck += 1;
                 
@@ -326,10 +342,101 @@ public class Milestone2 {
                 System.out.println("An error occurred while reading the file.");
             }
         
-        }  while (empCheck <= Integer.valueOf(lastId));
+        }while (empCheck <= Integer.valueOf(lastId));
     }
     
-   
+    public static double getSSS(double grossSalary){
+        double baseRange = 3250;
+        double contribution = 135.00;
+        
+        while (baseRange <= 24750){
+            if (grossSalary <= baseRange){
+                return contribution;
+            }
+            else{
+                baseRange += 500;
+                contribution += 22.50;
+            }
+            
+        }
+        
+        
+        return contribution;
+    }
+    
+    public static double getPhilHealth(double grossSalary){
+        double contribution = 0;
+        if (grossSalary >= 60000 ){
+            contribution = ((grossSalary * 0.03) / 2);
+                if (contribution > 1800){
+                    contribution = (1800 / 2);
+                    return contribution;
+                }
+            return contribution;    
+        }
+        if (grossSalary > 10000.01 && grossSalary < 59999.99){
+            contribution = ((grossSalary *0.03)/ 2);
+            return contribution;
+        }
+        if (grossSalary <= 10000 ){
+            contribution = ((grossSalary * 0.03) / 2);
+                if (contribution > 300){
+                    contribution = (300 / 2);
+                    return contribution;
+                }
+        return contribution;
+        }
+        return contribution;
+    }
+    
+    public static double getPagIbig(double grossSalary){
+        double contribution = 0;
+        if (grossSalary > 1500){
+            contribution = (grossSalary * 0.02);
+            if (contribution > 100){
+                contribution = 100;
+                
+            }   
+            
+        }
+        if (grossSalary >= 1000 && grossSalary <= 1500){
+            contribution = (grossSalary *0.02);
+            
+        }
+        if (grossSalary < 1000 ){
+            contribution = 0;
+            
+            }
+        return contribution;      
+    }
+    
+    public static double getWithholdingTax(double grossSalary){
+        double contribution = 0;
+        double taxableIncome = (grossSalary - (getSSS(grossSalary) + getPhilHealth(grossSalary) + getPagIbig(grossSalary)));
+
+        if (grossSalary > 666667){
+            contribution = (200833.33 + ((taxableIncome - 666667) *.35 ));
+        }
+        if (grossSalary >= 166667 && grossSalary < 666667){    
+            contribution = (40833.33+ ((taxableIncome - 166667) *.32 ));    
+        }
+        if (grossSalary >= 66667 && grossSalary < 166667){
+            contribution = (10833 + ((taxableIncome - 66667) *.30 ));    
+        }
+        if (grossSalary >= 33333 && grossSalary < 66667){
+            contribution = (2500 + ((taxableIncome - 33333) *.25 ));    
+        }
+        if (grossSalary >= 20833 && grossSalary < 33333){
+            contribution = ((taxableIncome - 20833) *.20 );    
+        }
+        if (grossSalary <= 20832){
+            return contribution;
+        }
+                    
+        
+        return contribution;
+    }
+    
     public static void main(String[] args){
       
         Scanner input = new Scanner(System.in);
@@ -379,6 +486,7 @@ public class Milestone2 {
                                 switch (choiceEmployee){
                                     case "1" : 
                                         calculateSingleSalary();
+                                        
                                       
                                         break;
                                         
