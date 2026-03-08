@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class Milestone2 {
     
     static HashMap<String, String[]> dataStorage = new HashMap<>();
-    // Initializes a Hashmap to store the employee data.
+    // Initializes a Hashmap to store the necessary employee data.
 
     public static void getEmployeeData(){
             boolean checker = false;
@@ -50,7 +50,7 @@ public class Milestone2 {
                     }       
                 }
                 if (checker != true){
-                    System.out.println("Employee Number does not exist!");
+                    System.out.println("Employee number does not exist.");
                 }
     }
     public static void getSingleSalary(String employeeNumber){
@@ -338,7 +338,12 @@ public class Milestone2 {
         }
 
         return contribution;
+        /* 
+            Gets the taxable income by subtracting the deductions from the gross salary, 
+            then finds the tax bracket based on the gross salary, then uses the taxable income to calculate the tax contribution 
+        */
     }
+        
     public static void readEmployeeData(String employeeNumber){
                 
                 String[] tempArray = dataStorage.get(employeeNumber);
@@ -350,17 +355,19 @@ public class Milestone2 {
                     }
         }
     }
+    
     public static double firstGrossSalary(double firstHalf, String employeeNumber){
-        return firstHalf * Double.parseDouble(getRate(employeeNumber));
+            return firstHalf * Double.parseDouble(getRate(employeeNumber));
     }
+    
     public static double secondGrossSalary(double secondHalf, String employeeNumber){
-        return secondHalf * Double.parseDouble(getRate(employeeNumber));
+            return secondHalf * Double.parseDouble(getRate(employeeNumber));
     }
     
     public static double grossSalary(double firstGrossSalary, double secondGrossSalary){
-
             return firstGrossSalary + secondGrossSalary;
     }
+    
     public static double totalDeductions(double grossSalary, double firstHalf, double secondHalf, String employeeNumber){
         return getSSS(grossSalary(firstGrossSalary(firstHalf,employeeNumber),secondGrossSalary(secondHalf,employeeNumber))) +
                getPhilHealth(grossSalary(firstGrossSalary(firstHalf,employeeNumber),secondGrossSalary(secondHalf,employeeNumber)))+
@@ -394,18 +401,20 @@ public class Milestone2 {
       
         Scanner input = new Scanner(System.in);
         
-        System.out.print("Enter your username:  ");
+        System.out.println("Enter your username and password:  ");
+        System.out.print("Username:  ");
         String workerType = input.nextLine();
+        System.out.print("Password:  ");
+        String password = input.nextLine();
         
+        // Asks for both username and password. If one or both are incorrect prints "Incorrect username and/or password and exits the program.
         
         if(workerType.isEmpty()){
-            System.out.println("Invalid Username!");
+            System.out.println("Incorrect username and/or password.");     
           
         }else{
             switch (workerType) {
                 case "employee" :               
-                    System.out.print("Enter your password:  ");
-                    String password = input.nextLine();
                     if("12345".equals(password)){
                         getEmployeeData();
                         break;
@@ -414,9 +423,7 @@ public class Milestone2 {
                         break;
                     }                     
                 case "payroll_staff":                  
-                    System.out.print("Enter your password:  ");
-                    String payrollPassword = input.nextLine();
-                    if("12345".equals(payrollPassword)){
+                    if("12345".equals(password)){
                         System.out.println("************************************** \n"); 
                         System.out.println("[1]. Process Payroll");
                         System.out.println("[2]. Exit the Program\n");
