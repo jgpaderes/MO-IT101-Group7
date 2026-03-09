@@ -463,15 +463,17 @@ public class Milestone2 {
                                 case "2" :
                                     System.exit(0);
                                 default: 
-                                    System.out.println("\n-- Invalid Input! --");
+                                    System.out.println("\n-- Invalid Input! Try again. --");
                                     repeat = true;
                                     break;
                             }
                         }while (repeat);
+                        
                         /*  If the input is employee and the password is correct, gives the choice for the employee number input or to exit the program. 
                          *  If the employee number is correct, proceeds with getting the employee data with (getEmployeeData(employeeNumber)).  
                          *  If case 2 is chosen, exit the program
                          *  If the input is none of the choices, repeats the query.
+                         *  Starts the repeat value as false, If the input is invalid, repeat becomes true and starts a loop.
                          */
                           
                     }else{
@@ -547,13 +549,14 @@ public class Milestone2 {
                                                 System.exit(0);     
                                                 // Choice for an exit clause if needed.
                                             default : 
-                                                System.out.println("\n-- Invalid Input! --");
+                                                System.out.println("\n-- Invalid Input! Try again. --");
                                                 repeat = true;
                                                 break;
                                                 
                                             }
                                         }while (repeat);
                                             // If the input is none of the choices, repeats the query.
+                                            // Starts the repeat value as false, If the input is invalid, repeat becomes true and starts a loop.
                                         
                                     case "2" :
                                         getAllSalary();
@@ -566,24 +569,25 @@ public class Milestone2 {
                                          // Choice for an exit clause if needed.
                                         
                                     default : 
-                                        System.out.println("\n-- Invalid Input! --");
+                                        System.out.println("\n-- Invalid Input! Try again. --");
                                         repeat = true;
                                         break;
                                         
                                     }
                                 }while (repeat); 
                                 // If the input is none of the choices, repeats the query.
-                            
+                                // Starts the repeat value as false, If the input is invalid, repeat becomes true and starts a loop.
                             case "2" :
                                 System.exit(0);
                              
                             default: 
-                                System.out.println("\n-- Invalid Input! --");
+                                System.out.println("\n-- Invalid Input! Try again. --");
                                 repeat = true;
                                 break;
                             }    
                         }while (repeat);
-                        
+                            // If the input is none of the choices, repeats the query.
+                            // Starts the repeat value as false, If the input is invalid, repeat becomes true and starts a loop.
                         
                     }else{
                         System.out.println("Incorrect username and/or password.");   
