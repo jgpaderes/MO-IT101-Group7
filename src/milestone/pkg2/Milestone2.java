@@ -163,9 +163,9 @@ public class Milestone2 {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("H:mm");  
             String employeeNumber = null;
             int empCheck = 10001;
-            String [] lastArray = null;
-            String lastId = null;
-            
+            String [] lastArray;
+            String lastId;
+                 
             do{
                 // Used Do-while loop to force the loop to run once and get the last ID value
                 double firstHalf = 0;
@@ -187,7 +187,6 @@ public class Milestone2 {
                             LocalTime logIn = LocalTime.parse(row[4], format); LocalTime logOut = LocalTime.parse(row[5], format);
                             double hours = getHours(logIn,logOut);
                     
-  
                             if (monthCount <= 12){
                             
                                 if (monthCount != monthNo){  
@@ -211,14 +210,14 @@ public class Milestone2 {
 
                             }    
                         }
-
                 }    
  
                 printPayroll(firstHalf,secondHalf,employeeNumber,monthCount);
                 empCheck += 1;
                 
                 // Repeated outside the while loop to catch December as the loop stops after reading the last item in the CSV
-        }while (empCheck <= Integer.parseInt(lastId));
+        
+            }while (empCheck <= Integer.parseInt(lastId));
             // Continues until the checker value (empCheck) goes above the last id
             // Breaks the loop going above the last id.
     }
